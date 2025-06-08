@@ -2,19 +2,292 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+// Better-auth related models
 
-    @@index([name])
+model User {
+  id            String   @id
+  name          String
+  email         String
+  emailVerified Boolean
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+
+  sessions            Session[]
+  accounts            Account[]
+  organizationMembers OrganizationMember[]
+  comments            Comment[]
+  cards               Card[]               @relation("CreatedBy")
+  boards              Board[]              @relation("CreatedBy")
+  wikiPages           WikiPage[]           @relation("CreatedBy")
+  assignedCards       Card[]               @relation("AssignedTo")
+  editedWikiPages     WikiPage[]           @relation("EditedBy")
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@unique([providerId, accountId])
+  @@map("accounts")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+// Application models
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  slug        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  members  OrganizationMember[]
+  projects Project[]
+
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String           @id @default(cuid())
+  userId         String
+  organizationId String
+  role           OrganizationRole @default(MEMBER)
+  joinedAt       DateTime         @default(now())
+
+  // Relations
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+  @@map("organization_members")
+}
+
+model Project {
+  id             String   @id @default(cuid())
+  name           String
+  description    String?
+  color          String?  @default("#3b82f6")
+  organizationId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  boards       Board[]
+  wikiPages    WikiPage[]
+
+  @@map("projects")
+}
+
+model Board {
+  id          String     @id @default(cuid())
+  name        String
+  description String?
+  projectId   String
+  createdById String
+  visibility  Visibility @default(ORGANIZATION)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // Relations
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdBy User    @relation("CreatedBy", fields: [createdById], references: [id])
+  lists     List[]
+
+  @@map("boards")
+}
+
+model List {
+  id        String   @id @default(cuid())
+  name      String
+  position  Int
+  boardId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  board Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  cards Card[]
+
+  @@map("lists")
+}
+
+model Card {
+  id           String    @id @default(cuid())
+  title        String
+  description  String?   @db.Text
+  position     Int
+  listId       String
+  assignedToId String?
+  createdById  String
+  dueDate      DateTime?
+  priority     Priority  @default(MEDIUM)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relations
+  list       List           @relation(fields: [listId], references: [id], onDelete: Cascade)
+  assignedTo User?          @relation("AssignedTo", fields: [assignedToId], references: [id])
+  createdBy  User           @relation("CreatedBy", fields: [createdById], references: [id])
+  comments   Comment[]
+  labels     CardLabel[]
+  wikiPages  CardWikiPage[]
+
+  @@map("cards")
+}
+
+model Label {
+  id    String @id @default(cuid())
+  name  String
+  color String
+
+  // Relations
+  cards CardLabel[]
+
+  @@map("labels")
+}
+
+model CardLabel {
+  cardId  String
+  labelId String
+
+  // Relations
+  card  Card  @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  label Label @relation(fields: [labelId], references: [id], onDelete: Cascade)
+
+  @@id([cardId, labelId])
+  @@map("card_labels")
+}
+
+model CardWikiPage {
+  cardId     String
+  wikiPageId String
+  createdAt  DateTime @default(now())
+
+  // Relations
+  card     Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  wikiPage WikiPage @relation(fields: [wikiPageId], references: [id], onDelete: Cascade)
+
+  @@id([cardId, wikiPageId])
+  @@map("card_wiki_pages")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  cardId    String
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  card   Card @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map("comments")
+}
+
+// Wiki functionality
+
+model WikiPage {
+  id             String   @id @default(cuid())
+  title          String
+  content        String   @db.Text
+  slug           String
+  projectId      String
+  createdById    String
+  lastEditedById String?
+  published      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  project      Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdBy    User           @relation("CreatedBy", fields: [createdById], references: [id])
+  lastEditedBy User?          @relation("EditedBy", fields: [lastEditedById], references: [id])
+  CardWikiPage CardWikiPage[]
+
+  @@unique([projectId, slug])
+  @@map("wiki_pages")
+}
+
+// Enums
+
+enum OrganizationRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+enum Visibility {
+  PRIVATE
+  ORGANIZATION
+  PUBLIC
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
 }
