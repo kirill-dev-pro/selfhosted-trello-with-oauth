@@ -2,6 +2,8 @@
 
 A self-hosted Trello-like project management application built with the T3 Stack, featuring OAuth authentication, project boards, and integrated wiki functionality.
 
+![Self-Hosted Project Management](./media/Self-Hosted%20Project%20Management.jpeg)
+
 ## Features
 
 - **Project Management**: Create and manage projects with Kanban-style boards
