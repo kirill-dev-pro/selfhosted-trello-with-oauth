@@ -1,29 +1,80 @@
-# Create T3 App
+# Self-Hosted Trello with OAuth
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A self-hosted Trello-like project management application built with the T3 Stack, featuring OAuth authentication, project boards, and integrated wiki functionality.
 
-## What's next? How do I make an app with this?
+## Features
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- **Project Management**: Create and manage projects with Kanban-style boards
+- **OAuth Authentication**: Secure login with OAuth providers
+- **Collaborative Boards**: Share boards with team members
+- **Integrated Wiki**: Built-in wiki pages for project documentation
+- **User Management**: Profile settings and member management
+- **Real-time Updates**: Modern, responsive interface with real-time collaboration
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Tech Stack
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- **Frontend**: Next.js 15, React 19, Tailwind CSS
+- **Backend**: tRPC, Better Auth
+- **Database**: PostgreSQL with Prisma ORM
+- **UI Components**: Radix UI primitives
+- **Development**: TypeScript, Biome (linting/formatting)
 
-## Learn More
+## Quick Start
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd selfhosted-trello-with-oauth
+   ```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your database URL and OAuth credentials
+   ```
 
-## How do I deploy this?
+4. **Start the database**
+   ```bash
+   ./start-database.sh
+   ```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+5. **Run database migrations**
+   ```bash
+   npm run db:migrate
+   ```
+
+6. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+Visit `http://localhost:3000` to access the application.
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run db:studio` - Open Prisma Studio
+- `npm run db:migrate` - Run database migrations
+- `npm run check` - Run linting and formatting checks
+
+## Deployment
+
+The application can be deployed on any platform that supports Next.js applications. Make sure to:
+
+1. Set up your production database
+2. Configure environment variables
+3. Run database migrations
+4. Build and deploy the application
+
+## License
+
+This project is private and not intended for public distribution.
