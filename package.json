@@ -9,7 +9,7 @@
 		"check:unsafe": "biome check --write --unsafe .",
 		"check:write": "biome check --write .",
 		"db:generate": "prisma migrate dev",
-		"db:migrate": "prisma migrate deploy",
+		"db:migrate": "prisma migrate deploy && prisma generate",
 		"db:push": "prisma db push",
 		"db:studio": "prisma studio",
 		"dev": "next dev --turbo",
