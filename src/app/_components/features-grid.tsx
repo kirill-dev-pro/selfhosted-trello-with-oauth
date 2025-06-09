@@ -9,16 +9,16 @@ export function FeaturesGrid() {
     },
     {
       icon: '📚',
-      title: 'Team Wiki',
+      title: 'Powerful Wiki System',
       description:
-        'Centralize your knowledge. Create documentation, share insights, and build a searchable knowledge base.',
+        'Create comprehensive documentation with rich text editing, version history, page linking, and powerful search. Perfect for team knowledge management.',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: '👥',
       title: 'Real-time Collaboration',
       description:
-        'Work together seamlessly. See updates instantly, leave comments, and keep everyone in sync.',
+        'Work together seamlessly. See updates instantly, leave comments, and keep everyone in sync across all features.',
       gradient: 'from-green-500 to-emerald-500',
     },
     {
@@ -37,9 +37,9 @@ export function FeaturesGrid() {
     },
     {
       icon: '🔗',
-      title: 'OAuth Integration',
+      title: 'OAuth OIDC Integration',
       description:
-        'Secure authentication with your favorite providers. Single sign-on for your entire team.',
+        'Secure authentication with your favorite providers. Use Klaud.me for free identity management or bring your own provider.',
       gradient: 'from-indigo-500 to-purple-500',
     },
   ]

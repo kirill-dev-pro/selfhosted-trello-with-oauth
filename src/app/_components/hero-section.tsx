@@ -22,8 +22,10 @@ export function HeroSection() {
 
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
             The ultimate selfhosted opensource project management application that brings boards,
-            wikis, and teams together. Take control of your data while supercharging your
-            productivity.
+            wikis, and teams together. Use it self-hosted or with our hosted version using your own
+            OAuth OIDC provider. Proudly sponsored by{' '}
+            <span className="text-blue-400 font-semibold">Klaud.me</span> for free identity
+            management.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -32,7 +34,7 @@ export function HeroSection() {
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 px-8 py-6 text-lg rounded-full shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30 hover:scale-105"
               onClick={() => router.push('/auth/signup')}
             >
-              Start Free Trial
+              Get Started Free
             </Button>
             <Button
               size="lg"
@@ -45,7 +47,7 @@ export function HeroSection() {
           </div>
 
           <div className="mt-12 text-sm text-gray-400">
-            No credit card required • Self-hosted • Open source
+            100% Free • Self-hosted or Hosted • OAuth OIDC Ready • Open source
           </div>
         </div>
 

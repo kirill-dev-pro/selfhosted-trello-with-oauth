@@ -13,7 +13,7 @@ export function TeamSection() {
                   <br />
                   <span className="text-white">Both ways.</span>
                 </h2>
-                <p className="text-gray-400 mb-8 text-lg">
+                <p className="text-gray-300 mb-8 text-lg">
                   Keep your code and project management in perfect harmony. Automatically sync
                   issues, pull requests, and milestones between GitHub and your boards.
                 </p>
@@ -24,8 +24,8 @@ export function TeamSection() {
                       <span className="text-xl">↔️</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold">Two-way synchronization</h4>
-                      <p className="text-sm text-gray-500">
+                      <h4 className="font-semibold text-white">Two-way synchronization</h4>
+                      <p className="text-sm text-gray-300">
                         Changes sync instantly in both directions
                       </p>
                     </div>
@@ -36,8 +36,8 @@ export function TeamSection() {
                       <span className="text-xl">🔐</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold">Secure connection</h4>
-                      <p className="text-sm text-gray-500">
+                      <h4 className="font-semibold text-white">Secure connection</h4>
+                      <p className="text-sm text-gray-300">
                         OAuth-based authentication keeps data safe
                       </p>
                     </div>
@@ -48,8 +48,8 @@ export function TeamSection() {
                       <span className="text-xl">⚡</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold">Real-time updates</h4>
-                      <p className="text-sm text-gray-500">
+                      <h4 className="font-semibold text-white">Real-time updates</h4>
+                      <p className="text-sm text-gray-300">
                         See changes as they happen across platforms
                       </p>
                     </div>

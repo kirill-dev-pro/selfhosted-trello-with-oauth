@@ -16,7 +16,7 @@ export function FooterSection() {
               Ready to get started?
             </span>
           </h2>
-          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Join thousands of teams already using Taski to ship faster and collaborate better.
           </p>
 
@@ -25,11 +25,11 @@ export function FooterSection() {
             className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 px-10 py-6 text-lg rounded-full shadow-lg shadow-orange-500/25 transition-all hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105"
             onClick={() => router.push('/auth/signup')}
           >
-            Start Your Free Trial
+            Start Using Taski
           </Button>
 
-          <p className="mt-6 text-sm text-gray-500">
-            14-day free trial • No credit card required • Cancel anytime
+          <p className="mt-6 text-sm text-gray-300">
+            Completely free • Self-host or use hosted version • Bring your own OAuth OIDC
           </p>
         </div>
       </section>
@@ -50,12 +50,14 @@ export function FooterSection() {
                   </button>
                 </li>
                 <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  <a
+                    href="/docs/setup-selfhosting.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors text-left block"
                   >
-                    Pricing
-                  </button>
+                    Self-Hosting
+                  </a>
                 </li>
                 <li>
                   <button
@@ -80,12 +82,14 @@ export function FooterSection() {
               <h3 className="font-semibold mb-4 text-gray-300">Resources</h3>
               <ul className="space-y-2">
                 <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  <a
+                    href="/docs/README.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors text-left block"
                   >
                     Documentation
-                  </button>
+                  </a>
                 </li>
                 <li>
                   <button
@@ -96,12 +100,14 @@ export function FooterSection() {
                   </button>
                 </li>
                 <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  <a
+                    href="/docs/setup-klaud.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors text-left block"
                   >
-                    Guides
-                  </button>
+                    OAuth OIDC Setup
+                  </a>
                 </li>
                 <li>
                   <button
@@ -164,12 +170,14 @@ export function FooterSection() {
                   </button>
                 </li>
                 <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  <a
+                    href="https://klaud.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors text-left block"
                   >
-                    Twitter
-                  </button>
+                    Klaud.me (Sponsor)
+                  </a>
                 </li>
                 <li>
                   <button

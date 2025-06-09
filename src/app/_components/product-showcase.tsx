@@ -11,28 +11,46 @@ export function ProductShowcase() {
     boards: {
       title: 'Kanban Boards',
       description:
-        'Drag and drop tasks between columns. Customize workflows, add labels, set due dates, and track progress visually.',
+        'Drag and drop tasks between columns. Customize workflows, add labels, set due dates, and track progress visually. Perfect for agile teams.',
       image: '/api/placeholder/1200/800',
       features: [
-        'Customizable columns',
-        'Task assignments',
-        'Due dates & reminders',
-        'Labels & priorities',
+        'Customizable columns and workflows',
+        'Task assignments and team collaboration',
+        'Due dates, reminders, and time tracking',
+        'Labels, priorities, and custom fields',
+        'Card dependencies and blocking relationships',
+        'Activity feeds and comment threads',
       ],
     },
     wiki: {
-      title: 'Team Wiki',
+      title: 'Team Wiki & Knowledge Base',
       description:
-        'Create a centralized knowledge base. Write documentation, share processes, and keep your team aligned.',
+        'Create a centralized knowledge hub with powerful editing tools. Build documentation, processes, guides, and searchable content that grows with your team.',
       image: '/api/placeholder/1200/800',
-      features: ['Rich text editor', 'Version history', 'Search functionality', 'Page linking'],
+      features: [
+        'Rich text editor with markdown support',
+        'Complete version history and change tracking',
+        'Advanced search across all pages',
+        'Page linking and cross-references',
+        'File attachments and media embedding',
+        'Collaborative editing with real-time sync',
+        'Templates for common document types',
+        'Export to PDF and other formats',
+      ],
     },
     collaboration: {
-      title: 'Collaboration',
+      title: 'Real-time Collaboration',
       description:
-        'Work together in real-time. Comment on tasks, mention team members, and stay in sync.',
+        'Work together seamlessly across boards and wiki. Comment on tasks, mention team members, and stay synchronized with instant updates.',
       image: '/api/placeholder/1200/800',
-      features: ['Real-time updates', 'Comments & mentions', 'Activity feed', 'Team notifications'],
+      features: [
+        'Real-time updates across all features',
+        'Comments, mentions, and notifications',
+        'Activity feeds and change tracking',
+        'Team member presence indicators',
+        'Shared workspaces and permissions',
+        'Integration with external tools',
+      ],
     },
   }
 
@@ -79,6 +97,7 @@ export function ProductShowcase() {
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
+                            aria-hidden="true"
                           >
                             <path
                               strokeLinecap="round"
