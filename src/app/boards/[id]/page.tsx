@@ -1,22 +1,9 @@
 'use client'
 
-import {
-  ArrowLeft,
-  BookOpen,
-  Calendar,
-  Edit,
-  MessageSquare,
-  MoreHorizontal,
-  Plus,
-  Tag,
-  Trash2,
-  User,
-} from 'lucide-react'
+import { ArrowLeft, CalendarIcon, Kanban, Plus, Workflow } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useId, useState } from 'react'
-import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import {
   Dialog,
   DialogContent,
@@ -25,18 +12,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '~/components/ui/dialog'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '~/components/ui/dropdown-menu'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
 import { Textarea } from '~/components/ui/textarea'
 import type { RouterOutputs } from '~/trpc/react'
 import { api } from '~/trpc/react'
+import { CalendarView } from './_components/calendar-view'
 import { CardDetailDialog } from './_components/card-detail-dialog'
+import { KanbanView } from './_components/kanban-view'
+import { WaterfallView } from './_components/waterfall-view'
 
 interface BoardPageProps {
   params: Promise<{ id: string }>
@@ -59,6 +44,7 @@ export default function BoardPage({ params }: BoardPageProps) {
   const [isCreatingCard, setIsCreatingCard] = useState(false)
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
   const [isCardDetailOpen, setIsCardDetailOpen] = useState(false)
+  const [activeView, setActiveView] = useState<'kanban' | 'waterfall' | 'calendar'>('kanban')
 
   const listNameId = useId()
   const cardTitleId = useId()
@@ -175,6 +161,27 @@ export default function BoardPage({ params }: BoardPageProps) {
               </div>
             </div>
             <div className="flex items-center space-x-2">
+              {/* View Selector */}
+              <Tabs
+                value={activeView}
+                onValueChange={(value) => setActiveView(value as typeof activeView)}
+              >
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="kanban" className="flex items-center gap-2">
+                    <Kanban className="h-4 w-4" />
+                    Kanban
+                  </TabsTrigger>
+                  <TabsTrigger value="waterfall" className="flex items-center gap-2">
+                    <Workflow className="h-4 w-4" />
+                    Waterfall
+                  </TabsTrigger>
+                  <TabsTrigger value="calendar" className="flex items-center gap-2">
+                    <CalendarIcon className="h-4 w-4" />
+                    Calendar
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+
               <Dialog open={isCreateListDialogOpen} onOpenChange={setIsCreateListDialogOpen}>
                 <DialogTrigger asChild>
                   <Button variant="outline">
@@ -303,132 +310,30 @@ export default function BoardPage({ params }: BoardPageProps) {
         </div>
       </header>
 
-      {/* Kanban Board */}
-      <main className="flex-1 overflow-x-auto p-4">
-        <div className="flex space-x-6 h-full min-w-max">
-          {board.lists.map((list: List) => (
-            <div
-              key={list.id}
-              className="flex-shrink-0 w-80 bg-gray-100 rounded-lg p-4 h-fit max-h-[calc(100vh-12rem)] flex flex-col"
-            >
-              {/* List Header */}
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-900">{list.name}</h3>
-                <div className="flex items-center space-x-2">
-                  <Badge variant="secondary">{list.cards.length}</Badge>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>
-                        <Edit className="h-4 w-4 mr-2" />
-                        Edit List
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-600">
-                        <Trash2 className="h-4 w-4 mr-2" />
-                        Delete List
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </div>
-
-              {/* Cards */}
-              <div className="space-y-3 flex-1 overflow-y-auto">
-                {list.cards.map((card: KanbanCard) => (
-                  <Card
-                    key={card.id}
-                    className="cursor-pointer hover:shadow-md transition-shadow bg-white"
-                    onClick={() => handleCardClick(card.id)}
-                  >
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
-                      {card.description && (
-                        <CardDescription className="text-xs">{card.description}</CardDescription>
-                      )}
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        <div className="flex items-center space-x-2">
-                          {card.assignedTo && (
-                            <div className="flex items-center">
-                              <User className="h-3 w-3 mr-1" />
-                              <span>{card.assignedTo.name || card.assignedTo.email}</span>
-                            </div>
-                          )}
-                          {card.dueDate && (
-                            <div className="flex items-center">
-                              <Calendar className="h-3 w-3 mr-1" />
-                              <span>{new Date(card.dueDate).toLocaleDateString()}</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          {card.labels.length > 0 && <Tag className="h-3 w-3" />}
-                          {card.comments.length > 0 && (
-                            <div className="flex items-center">
-                              <MessageSquare className="h-3 w-3 mr-1" />
-                              <span>{card.comments.length}</span>
-                            </div>
-                          )}
-                          {card.wikiPages && card.wikiPages.length > 0 && (
-                            <div className="flex items-center">
-                              <BookOpen className="h-3 w-3 mr-1" />
-                              <span>{card.wikiPages.length}</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="mt-2 flex items-center justify-between">
-                        <Badge
-                          variant={
-                            card.priority === 'URGENT'
-                              ? 'destructive'
-                              : card.priority === 'HIGH'
-                                ? 'default'
-                                : card.priority === 'MEDIUM'
-                                  ? 'secondary'
-                                  : 'outline'
-                          }
-                        >
-                          {card.priority}
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              {/* Add Card Button */}
-              <Button
-                variant="ghost"
-                className="w-full mt-4 border-2 border-dashed border-gray-300 hover:border-gray-400"
-                onClick={() => {
-                  setSelectedListId(list.id)
-                  setIsCreateCardDialogOpen(true)
-                }}
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Add a card
-              </Button>
-            </div>
-          ))}
-
-          {/* Add List Column */}
-          <div className="flex-shrink-0 w-80">
-            <Button
-              variant="ghost"
-              className="w-full h-32 border-2 border-dashed border-gray-300 hover:border-gray-400 bg-gray-50/50"
-              onClick={() => setIsCreateListDialogOpen(true)}
-            >
-              <Plus className="h-6 w-6 mr-2" />
-              Add a list
-            </Button>
-          </div>
-        </div>
+      {/* Main Content */}
+      <main className="flex-1 overflow-hidden">
+        <Tabs
+          value={activeView}
+          onValueChange={(value) => setActiveView(value as typeof activeView)}
+        >
+          <TabsContent value="kanban" className="h-full mt-0">
+            <KanbanView
+              board={board}
+              onCardClick={handleCardClick}
+              onCreateCard={(listId) => {
+                setSelectedListId(listId)
+                setIsCreateCardDialogOpen(true)
+              }}
+              onCreateList={() => setIsCreateListDialogOpen(true)}
+            />
+          </TabsContent>
+          <TabsContent value="waterfall" className="h-full mt-0">
+            <WaterfallView board={board} onCardClick={handleCardClick} />
+          </TabsContent>
+          <TabsContent value="calendar" className="h-full mt-0">
+            <CalendarView board={board} onCardClick={handleCardClick} />
+          </TabsContent>
+        </Tabs>
       </main>
 
       {/* Card Detail Dialog */}
