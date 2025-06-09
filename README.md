@@ -1,8 +1,8 @@
-# Self-Hosted Trello with OAuth
+# Taski — ultimate selfhosted opensource project management application
 
-A self-hosted Trello-like project management application built with the T3 Stack, featuring OAuth authentication, project boards, and integrated wiki functionality.
+The ultimate selfhosted opensource project management application built with the T3 Stack, featuring OAuth authentication, project boards, and integrated wiki functionality.
 
-![Self-Hosted Project Management](./media/Self-Hosted%20Project%20Management.jpeg)
+![Taski](./media/Self-Hosted%20Project%20Management.jpeg)
 
 ## Features
 
@@ -26,7 +26,7 @@ A self-hosted Trello-like project management application built with the T3 Stack
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd selfhosted-trello-with-oauth
+   cd taski
    ```
 
 2. **Install dependencies**

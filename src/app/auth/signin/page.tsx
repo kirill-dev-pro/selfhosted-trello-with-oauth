@@ -97,7 +97,9 @@ export default function SignInPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-          <CardDescription>Sign in to your account to continue to your projects</CardDescription>
+          <CardDescription>
+            Sign in to your Taski account to continue to your projects
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Social Sign In Buttons */}

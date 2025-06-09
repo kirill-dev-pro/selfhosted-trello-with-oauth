@@ -17,7 +17,7 @@ export function FooterSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Join thousands of teams already using TaskFlow to ship faster and collaborate better.
+            Join thousands of teams already using Taski to ship faster and collaborate better.
           </p>
 
           <Button
@@ -196,11 +196,11 @@ export function FooterSection() {
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold">T</span>
               </div>
-              <span className="font-semibold">TaskFlow</span>
+              <span className="font-semibold">Taski</span>
             </div>
 
             <p className="text-gray-400 text-sm">
-              © 2024 TaskFlow. All rights reserved. Self-hosted with ❤️
+              © 2024 Taski. All rights reserved. Self-hosted with ❤️
             </p>
           </div>
         </div>

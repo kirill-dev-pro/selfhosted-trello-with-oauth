@@ -6,8 +6,9 @@ import { Geist } from 'next/font/google'
 import { TRPCReactProvider } from '~/trpc/react'
 
 export const metadata: Metadata = {
-  title: 'Self-Hosted Project Management',
-  description: 'A powerful combination of Trello-like boards and team wiki for your organization',
+  title: 'Taski — ultimate selfhosted opensource project management application',
+  description:
+    'Ultimate selfhosted opensource project management application featuring Kanban boards, team wikis, and seamless collaboration for your organization',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
 }
 

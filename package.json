@@ -1,5 +1,5 @@
 {
-	"name": "selfhosted-trello-with-oauth",
+	"name": "taski",
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",

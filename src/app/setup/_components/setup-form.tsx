@@ -68,7 +68,7 @@ export function SetupForm() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Setup Your Organization</CardTitle>
           <CardDescription>
-            Create your organization to get started with project management
+            Create your organization to get started with Taski project management
           </CardDescription>
         </CardHeader>
         <CardContent>

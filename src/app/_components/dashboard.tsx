@@ -1,22 +1,10 @@
-"use client";
+'use client'
 
-import { useRouter } from "next/navigation";
-import {
-  Plus,
-  Settings,
-  Users,
-  BookOpen,
-  LayoutDashboard,
-  LogOut,
-} from "lucide-react";
-import { Button } from "~/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { BookOpen, LayoutDashboard, LogOut, Plus, Settings, Users } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+import { Button } from '~/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,45 +12,44 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { api } from "~/trpc/react";
-import { useSession, signOut } from "~/lib/auth-client";
+} from '~/components/ui/dropdown-menu'
+import { signOut, useSession } from '~/lib/auth-client'
+import { api } from '~/trpc/react'
 
 export function Dashboard() {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const { data: organization } = api.organization.get.useQuery();
+  const router = useRouter()
+  const { data: session } = useSession()
+  const { data: organization } = api.organization.get.useQuery()
   const { data: projects } = api.project.getAll.useQuery(
-    { organizationId: organization?.id ?? "" },
-    { enabled: !!organization?.id }
-  );
+    { organizationId: organization?.id ?? '' },
+    { enabled: !!organization?.id },
+  )
 
   const handleSignOut = async () => {
     try {
-      await signOut();
-      router.push("/");
-      router.refresh();
+      await signOut()
+      router.push('/')
+      router.refresh()
     } catch (error) {
-      console.error("Sign out error:", error);
+      console.error('Sign out error:', error)
     }
-  };
+  }
 
   if (!session?.user) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   if (!organization) {
-    return <div>Loading organization...</div>;
+    return <div>Loading organization...</div>
   }
 
   const userInitials = session.user.name
     ? session.user.name
-        .split(" ")
+        .split(' ')
         .map((n) => n[0])
-        .join("")
+        .join('')
         .toUpperCase()
-    : session.user.email?.charAt(0).toUpperCase() || "U";
+    : session.user.email?.charAt(0).toUpperCase() || 'U'
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -71,27 +58,15 @@ export function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-gray-900">
-                {organization.name}
-              </h1>
-              <span className="text-sm text-gray-500">
-                Self-Hosted Project Management
-              </span>
+              <h1 className="text-2xl font-bold text-gray-900">{organization.name}</h1>
+              <span className="text-sm text-gray-500">Taski</span>
             </div>
             <div className="flex items-center space-x-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => router.push("/settings")}
-              >
+              <Button variant="outline" size="sm" onClick={() => router.push('/settings')}>
                 <Settings className="h-4 w-4 mr-2" />
                 Settings
               </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => router.push("/members")}
-              >
+              <Button variant="outline" size="sm" onClick={() => router.push('/members')}>
                 <Users className="h-4 w-4 mr-2" />
                 Members
               </Button>
@@ -99,14 +74,11 @@ export function Dashboard() {
               {/* User Menu */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="relative h-8 w-8 rounded-full"
-                  >
+                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                     <Avatar className="h-8 w-8">
                       <AvatarImage
                         src={session.user.image ?? undefined}
-                        alt={session.user.name ?? ""}
+                        alt={session.user.name ?? ''}
                       />
                       <AvatarFallback>{userInitials}</AvatarFallback>
                     </Avatar>
@@ -115,9 +87,7 @@ export function Dashboard() {
                 <DropdownMenuContent className="w-56" align="end" forceMount>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">
-                        {session.user.name}
-                      </p>
+                      <p className="text-sm font-medium leading-none">{session.user.name}</p>
                       <p className="text-xs leading-none text-muted-foreground">
                         {session.user.email}
                       </p>
@@ -145,7 +115,7 @@ export function Dashboard() {
                 Manage your team's projects, boards, and documentation
               </p>
             </div>
-            <Button onClick={() => router.push("/projects/new")}>
+            <Button onClick={() => router.push('/projects/new')}>
               <Plus className="h-4 w-4 mr-2" />
               New Project
             </Button>
@@ -164,13 +134,11 @@ export function Dashboard() {
                 <CardTitle className="flex items-center space-x-2">
                   <div
                     className="w-4 h-4 rounded-full"
-                    style={{ backgroundColor: project.color ?? "#3b82f6" }}
+                    style={{ backgroundColor: project.color ?? '#3b82f6' }}
                   />
                   <span>{project.name}</span>
                 </CardTitle>
-                {project.description && (
-                  <CardDescription>{project.description}</CardDescription>
-                )}
+                {project.description && <CardDescription>{project.description}</CardDescription>}
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-4 text-sm text-gray-500">
@@ -192,14 +160,12 @@ export function Dashboard() {
             <Card className="col-span-full">
               <CardContent className="flex flex-col items-center justify-center py-12">
                 <LayoutDashboard className="h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  No projects yet
-                </h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
                 <p className="text-gray-500 text-center mb-4">
-                  Create your first project to start organizing your work with
-                  boards and wiki pages.
+                  Create your first project to start organizing your work with boards and wiki
+                  pages.
                 </p>
-                <Button onClick={() => router.push("/projects/new")}>
+                <Button onClick={() => router.push('/projects/new')}>
                   <Plus className="h-4 w-4 mr-2" />
                   Create Your First Project
                 </Button>
@@ -209,5 +175,5 @@ export function Dashboard() {
         </div>
       </main>
     </div>
-  );
+  )
 }

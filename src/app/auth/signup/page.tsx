@@ -119,7 +119,9 @@ export default function SignUpPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
-          <CardDescription>Sign up to start managing your projects and wiki</CardDescription>
+          <CardDescription>
+            Sign up for Taski to start managing your projects and wiki
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Social Sign Up Buttons */}

@@ -12,15 +12,18 @@ export function HeroSection() {
         <div className="animate-fadeIn">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
-              Everything App
+              Taski
             </span>
             <br />
-            <span className="text-white">for your teams</span>
+            <span className="text-white">ultimate selfhosted opensource</span>
+            <br />
+            <span className="text-white">project management application</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            Self-hosted project management that brings boards, wikis, and teams together. Take
-            control of your data while supercharging your productivity.
+            The ultimate selfhosted opensource project management application that brings boards,
+            wikis, and teams together. Take control of your data while supercharging your
+            productivity.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
