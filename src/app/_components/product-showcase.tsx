@@ -69,15 +69,24 @@ export function ProductShowcase() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 bg-white/5 backdrop-blur-sm border border-white/10">
-            <TabsTrigger value="boards" className="data-[state=active]:bg-white/10">
-              Boards
+          <TabsList className="grid w-full max-w-lg mx-auto grid-cols-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-2">
+            <TabsTrigger
+              value="boards"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg text-gray-300 hover:text-white transition-all duration-200 rounded-lg py-3 px-6 font-medium"
+            >
+              📋 Boards
             </TabsTrigger>
-            <TabsTrigger value="wiki" className="data-[state=active]:bg-white/10">
-              Wiki
+            <TabsTrigger
+              value="wiki"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg text-gray-300 hover:text-white transition-all duration-200 rounded-lg py-3 px-6 font-medium"
+            >
+              📚 Wiki
             </TabsTrigger>
-            <TabsTrigger value="collaboration" className="data-[state=active]:bg-white/10">
-              Collaboration
+            <TabsTrigger
+              value="collaboration"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg text-gray-300 hover:text-white transition-all duration-200 rounded-lg py-3 px-6 font-medium"
+            >
+              👥 Collaboration
             </TabsTrigger>
           </TabsList>
 

@@ -22,10 +22,10 @@ export function FooterSection() {
 
           <Button
             size="lg"
-            className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 px-10 py-6 text-lg rounded-full shadow-lg shadow-orange-500/25 transition-all hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105"
+            className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white border-0 px-10 py-6 text-lg rounded-xl shadow-lg shadow-orange-500/25 transition-all hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105"
             onClick={() => router.push('/auth/signup')}
           >
-            Start Using Taski
+            🚀 Start Using Taski
           </Button>
 
           <p className="mt-6 text-sm text-gray-300">
@@ -34,182 +34,56 @@ export function FooterSection() {
         </div>
       </section>
 
-      {/* Footer Links */}
-      <div className="border-t border-white/10 py-12">
+      {/* Simple Footer */}
+      <div className="border-t border-white/10 py-8">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="font-semibold mb-4 text-gray-300">Product</h3>
-              <ul className="space-y-2">
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Features
-                  </button>
-                </li>
-                <li>
-                  <a
-                    href="/docs/setup-selfhosting.md"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors text-left block"
-                  >
-                    Self-Hosting
-                  </a>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Roadmap
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Changelog
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4 text-gray-300">Resources</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/docs/README.md"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors text-left block"
-                  >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    API Reference
-                  </button>
-                </li>
-                <li>
-                  <a
-                    href="/docs/setup-klaud.md"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors text-left block"
-                  >
-                    OAuth OIDC Setup
-                  </a>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Blog
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4 text-gray-300">Company</h3>
-              <ul className="space-y-2">
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    About
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Contact
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Privacy
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Terms
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4 text-gray-300">Connect</h3>
-              <ul className="space-y-2">
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    GitHub
-                  </button>
-                </li>
-                <li>
-                  <a
-                    href="https://klaud.me"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors text-left block"
-                  >
-                    Klaud.me (Sponsor)
-                  </a>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    Discord
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    className="text-gray-400 hover:text-white transition-colors text-left"
-                  >
-                    LinkedIn
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold">T</span>
               </div>
-              <span className="font-semibold">Taski</span>
+              <span className="font-semibold text-white">Taski</span>
             </div>
 
-            <p className="text-gray-400 text-sm">
-              © 2024 Taski. All rights reserved. Self-hosted with ❤️
-            </p>
+            {/* Essential Links */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              <a
+                href="https://github.com/kirill-dev-pro/selfhosted-trello-with-oauth"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://github.com/kirill-dev-pro/selfhosted-trello-with-oauth/blob/main/docs/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Documentation
+              </a>
+              <a
+                href="https://github.com/kirill-dev-pro/selfhosted-trello-with-oauth/blob/main/docs/setup-selfhosting.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Self-Hosting
+              </a>
+              <a
+                href="https://klaud.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Klaud.me ❤️
+              </a>
+            </div>
+
+            {/* Copyright */}
+            <p className="text-gray-400 text-sm">© 2024 Taski • Open Source</p>
           </div>
         </div>
       </div>

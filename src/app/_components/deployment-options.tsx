@@ -86,12 +86,16 @@ export function DeploymentOptions() {
                 </ul>
                 <div className="text-center">
                   <a
-                    href={index === 0 ? '/docs/setup-selfhosting.md' : '/docs/setup-klaud.md'}
+                    href={
+                      index === 0
+                        ? 'https://github.com/kirill-dev-pro/selfhosted-trello-with-oauth/blob/main/docs/setup-selfhosting.md'
+                        : 'https://github.com/kirill-dev-pro/selfhosted-trello-with-oauth/blob/main/docs/setup-klaud.md'
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium transition-colors"
+                    className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
                   >
-                    {index === 0 ? 'Setup Self-Hosting' : 'Setup with Klaud.me'}
+                    {index === 0 ? '📖 Setup Self-Hosting' : '🔧 Setup with Klaud.me'}
                   </a>
                 </div>
               </CardContent>
@@ -122,12 +126,12 @@ export function DeploymentOptions() {
                   Get Free Identity Provider
                 </a>
                 <a
-                  href="/docs/setup-klaud.md"
+                  href="https://github.com/kirill-dev-pro/selfhosted-trello-with-oauth/blob/main/docs/setup-klaud.md"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-white/20 text-white hover:bg-white/10 px-6 py-3 rounded-full font-medium transition-colors"
+                  className="border border-white/20 text-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
                 >
-                  Klaud Setup Guide
+                  📖 Klaud Setup Guide
                 </a>
               </div>
             </CardContent>
