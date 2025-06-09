@@ -13,11 +13,10 @@
 		"db:push": "prisma db push",
 		"db:studio": "prisma studio",
 		"dev": "next dev --turbo",
-		"postinstall": "prisma generate",
+		"postinstall": "prisma migrate deploy",
 		"preview": "next build && next start",
 		"start": "next start",
-		"typecheck": "tsc --noEmit",
-		"vercel-build": "prisma migrate deploy && prisma generate && next build"
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.5.0",
